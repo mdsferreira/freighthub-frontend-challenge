@@ -2,7 +2,7 @@
   "shipments": [
     {
       "id": "S1000",
-      "name": "T-shirts(Summer2018) from Shanghai to Hamburg",
+      "name": "New Furnitures from Shengen(2020)",
       "cargo": [
         {
           "type": "Fabric",
@@ -62,7 +62,7 @@
     },
     {
       "id": "S1002",
-      "name": "PO89634, PO27X",
+      "name": "PO89634, PO27X asdasd",
       "cargo": [
         {
           "type": "Bikes model 27X",
