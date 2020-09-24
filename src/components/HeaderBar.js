@@ -28,12 +28,12 @@ export default function HeaderBar() {
       <AppBar position="fixed">
         <Toolbar>
           <Grid container>
-            <Grid item lg={4}>
+            <Grid item lg={4} sm={4} md={4}>
               <Typography className={classes.title} variant="h6" noWrap>
                 Revivid Mind Test
               </Typography>
             </Grid>
-            <Grid item xs={12} lg={3}>
+            <Grid item xs={12} md={5} sm={5} lg={4}>
               <div className={classes.search}>
                 <div className={classes.searchIcon}>
                   <SearchIcon />
