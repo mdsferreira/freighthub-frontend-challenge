@@ -8,3 +8,7 @@ export function fetchShipmentList(key, filterParams) {
 export function fetchShipmentById(key, shipmentId) {
   return axios.get(`${urls.shipment}/${shipmentId}`);
 }
+
+export function editShipment({ id, name }) {
+  return axios.patch(`${urls.shipment}/${id}`, { name });
+}

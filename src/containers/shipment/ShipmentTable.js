@@ -17,10 +17,10 @@ import SaveIcon from "@material-ui/icons/Save";
 import CheckIcon from "@material-ui/icons/Check";
 import StatusText from "../../components/StatusText";
 import TableActions from "../../components/TableActions";
-import Axios from "axios";
-import { urls } from "../../utils/url";
 import LoadingOverlay from "react-loading-overlay";
 import { useHistory } from "react-router-dom";
+import { useMutation, useQueryCache } from "react-query";
+import { editShipment } from "../../core/actions/shipment";
 
 const status = {
   ERROR: "error",
@@ -45,6 +45,7 @@ export default function ShipmentTable({
   const [editStatus, setEditStatus] = useState("");
   const classes = useStyles();
   const history = useHistory();
+  const cache = useQueryCache();
 
   const handleEdit = (shipment) => {
     setNewName(shipment.name);
@@ -56,13 +57,16 @@ export default function ShipmentTable({
       setEditStatus(status.ERROR);
     } else {
       setEditStatus(status.LOADING);
-      Axios.patch(`${urls.shipment}/${id}`, {
-        name: newName,
-      }).then(() => {
-        setEditStatus(status.SUCCESS);
-      });
+      editShipmentName({ id, name: newName });
     }
   };
+
+  const [editShipmentName] = useMutation(editShipment, {
+    onSuccess: () => {
+      setEditStatus(status.SUCCESS);
+      cache.invalidateQueries("shipments");
+    },
+  });
 
   const handleView = (shipmentId) => {
     history.push({
